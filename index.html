@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Производственная платформа</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #edit-process-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <i class="fas fa-industry"></i>
+        <h1>Цифровая платформа</h1>
+      </div>
+      <ul id="nav-menu">
+        <li><a href="#" data-link="current-processes">Текущие процессы</a></li>
+        <li><a href="#" data-link="add-process">Добавить процесс</a></li>
+        <li><a href="#" data-link="all-processes">Все процессы</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="app-section">
+      <h2>Добро пожаловать</h2>
+      <section id="process-section" style="display: none">
+        <h2>Процессы</h2>
+        <ul id="process-list"></ul>
+      </section>
+      <section id="add-process-section" style="display: none">
+        <h2>Добавить процесс</h2>
+        <form id="process-form">
+          <label for="process-name">Название процесса:</label>
+          <input type="text" id="process-name" required />
+          <label for="process-start">Дата начала:</label>
+          <input type="date" id="process-start" required />
+          <label for="process-end">Дата окончания:</label>
+          <input type="date" id="process-end" />
+          <label for="process-task">Задача:</label>
+          <input type="text" id="process-task" required />
+          <label for="process-employees">Участники (через запятую):</label>
+          <input type="text" id="process-employees" required />
+          <label for="process-stage">Этап разработки:</label>
+          <select id="process-stage">
+            <option value="Планирование">Планирование</option>
+            <option value="Выполнение">Выполнение</option>
+            <option value="Завершение">Завершение</option>
+          </select>
+          <button type="submit">Добавить процесс</button>
+        </form>
+      </section>
+      <section id="edit-process-section">
+        <h2>Редактировать процесс</h2>
+        <form id="edit-process-form">
+          <label for="edit-process-name">Название процесса:</label>
+          <input type="text" id="edit-process-name" required />
+          <label for="edit-process-start">Дата начала:</label>
+          <input type="date" id="edit-process-start" required />
+          <label for="edit-process-end">Дата окончания:</label>
+          <input type="date" id="edit-process-end" />
+          <label for="edit-process-task">Задача:</label>
+          <input type="text" id="edit-process-task" required />
+          <label for="edit-process-employees">Участники (через запятую):</label>
+          <input type="text" id="edit-process-employees" required />
+          <label for="edit-process-stage">Этап разработки:</label>
+          <select id="edit-process-stage">
+            <option value="Планирование">Планирование</option>
+            <option value="Выполнение">Выполнение</option>
+            <option value="Завершение">Завершение</option>
+          </select>
+          <input type="hidden" id="edit-process-index" />
+          <button type="submit">Сохранить изменения</button>
+          <button type="button" id="cancel-edit">Отмена</button>
+        </form>
+      </section>
+    </section>
+  </main>
+  <footer>
+    <div class="copyright">
+      <p>&copy; 2024 Производственная платформа</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
