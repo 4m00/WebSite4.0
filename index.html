@@ -6,11 +6,6 @@
   <title>Производственная платформа</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    #edit-process-section {
-      display: none;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -19,16 +14,29 @@
         <i class="fas fa-industry"></i>
         <h1>Цифровая платформа</h1>
       </div>
-      <ul id="nav-menu">
+      <ul id="nav-menu" class="menu">
         <li><a href="#" data-link="current-processes">Текущие процессы</a></li>
         <li><a href="#" data-link="add-process">Добавить процесс</a></li>
         <li><a href="#" data-link="all-processes">Все процессы</a></li>
+        <li><a href="#" data-link="materials">Материалы</a></li>
+        <li><a href="#" data-link="equipment">Оборудование</a></li>
+        <li><a href="#" data-link="quality-control">Контроль качества</a></li>
+        <li><a href="#" data-link="cost-management">Управление затратами</a></li>
+        <li><a href="#" data-link="process-visualization">Визуализация процессов</a></li>
+        <li><a href="#" data-link="orders">Заказы</a></li>
       </ul>
     </nav>
   </header>
   <main>
-    <section id="app-section">
+    <section id="welcome-section">
       <h2>Добро пожаловать</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Имя пользователя" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+      </form>
+    </section>
+    <section id="app-section" style="display: none">
       <section id="process-section" style="display: none">
         <h2>Процессы</h2>
         <ul id="process-list"></ul>
@@ -36,48 +44,107 @@
       <section id="add-process-section" style="display: none">
         <h2>Добавить процесс</h2>
         <form id="process-form">
-          <label for="process-name">Название процесса:</label>
-          <input type="text" id="process-name" required />
-          <label for="process-start">Дата начала:</label>
-          <input type="date" id="process-start" required />
-          <label for="process-end">Дата окончания:</label>
-          <input type="date" id="process-end" />
-          <label for="process-task">Задача:</label>
-          <input type="text" id="process-task" required />
-          <label for="process-employees">Участники (через запятую):</label>
-          <input type="text" id="process-employees" required />
-          <label for="process-stage">Этап разработки:</label>
-          <select id="process-stage">
-            <option value="Планирование">Планирование</option>
-            <option value="Выполнение">Выполнение</option>
-            <option value="Завершение">Завершение</option>
-          </select>
-          <button type="submit">Добавить процесс</button>
+            <label for="process-name">Название процесса:</label>
+            <input type="text" id="process-name" required />
+            <label for="process-startDate">Дата начала:</label>
+            <input type="date" id="process-startDate" required />
+            <label for="process-endDate">Дата окончания (необязательно):</label>
+            <input type="date" id="process-endDate" />
+            <button type="submit">Добавить процесс</button>
         </form>
       </section>
-      <section id="edit-process-section">
-        <h2>Редактировать процесс</h2>
-        <form id="edit-process-form">
-          <label for="edit-process-name">Название процесса:</label>
-          <input type="text" id="edit-process-name" required />
-          <label for="edit-process-start">Дата начала:</label>
-          <input type="date" id="edit-process-start" required />
-          <label for="edit-process-end">Дата окончания:</label>
-          <input type="date" id="edit-process-end" />
-          <label for="edit-process-task">Задача:</label>
-          <input type="text" id="edit-process-task" required />
-          <label for="edit-process-employees">Участники (через запятую):</label>
-          <input type="text" id="edit-process-employees" required />
-          <label for="edit-process-stage">Этап разработки:</label>
-          <select id="edit-process-stage">
-            <option value="Планирование">Планирование</option>
-            <option value="Выполнение">Выполнение</option>
-            <option value="Завершение">Завершение</option>
-          </select>
-          <input type="hidden" id="edit-process-index" />
-          <button type="submit">Сохранить изменения</button>
-          <button type="button" id="cancel-edit">Отмена</button>
-        </form>
+      <section id="materials-section" style="display: none">
+        <h2>Материалы</h2>
+        <ul id="materials-list"></ul>
+        <section id="add-material-section">
+          <h3>Добавить материал</h3>
+          <form id="material-form">
+            <label for="material-name">Название материала:</label>
+            <input type="text" id="material-name" required />
+            <label for="material-quantity">Количество:</label>
+            <input type="number" id="material-quantity" required />
+            <label for="material-unit">Единица измерения:</label>
+            <input type="text" id="material-unit" required />
+            <button type="submit">Добавить материал</button>
+          </form>
+        </section>
+      </section>
+      <section id="equipment-section" style="display: none">
+        <h2>Оборудование</h2>
+        <ul id="equipment-list"></ul>
+        <section id="add-equipment-section">
+          <h3>Добавить оборудование</h3>
+          <form id="equipment-form">
+            <label for="equipment-name">Название оборудования:</label>
+            <input type="text" id="equipment-name" required />
+            <label for="equipment-type">Тип оборудования:</label>
+            <input type="text" id="equipment-type" required />
+            <label for="equipment-status">Статус:</label>
+            <select id="equipment-status">
+              <option value="working">Работает</option>
+              <option value="repair">Ремонт</option>
+              <option value="idle">Простой</option>
+            </select>
+            <button type="submit">Добавить оборудование</button>
+          </form>
+        </section>
+      </section>
+      <section id="quality-control-section" style="display: none">
+        <h2>Контроль качества</h2>
+        <ul id="quality-checks-list"></ul>
+        <section id="add-quality-check-section">
+          <h3>Добавить проверку качества</h3>
+          <form id="quality-check-form">
+            <label for="quality-check-product">Продукт:</label>
+            <input type="text" id="quality-check-product" required />
+            <label for="quality-check-date">Дата:</label>
+            <input type="date" id="quality-check-date" required />
+            <label for="quality-check-result">Результат:</label>
+            <select id="quality-check-result">
+              <option value="pass">Пройдено</option>
+              <option value="fail">Не пройдено</option>
+            </select>
+            <label for="quality-check-notes">Примечания:</label>
+            <textarea id="quality-check-notes"></textarea>
+            <button type="submit">Добавить проверку</button>
+          </form>
+        </section>
+      </section>
+      <section id="cost-management-section" style="display: none">
+        <h2>Управление затратами</h2>
+        <ul id="costs-list"></ul>
+        <section id="add-cost-section">
+          <h3>Добавить статью расходов</h3>
+          <form id="cost-form">
+            <label for="cost-name">Название расхода:</label>
+            <input type="text" id="cost-name" required />
+            <label for="cost-amount">Сумма:</label>
+            <input type="number" id="cost-amount" required />
+            <label for="cost-date">Дата:</label>
+            <input type="date"Tabn id="cost-date" required />
+            <button type="submit">Добавить расход</button>
+          </form>
+        </section>
+      </section>
+      <section id="process-visualization-section" style="display: none">
+        <h2>Визуализация процессов</h2>
+        <div id="process-visualization"></div>
+      </section>
+      <section id="orders-section" style="display: none">
+        <h2>Заказы</h2>
+        <ul id="orders-list"></ul>
+        <section id="add-order-section">
+          <h3>Добавить заказ</h3>
+          <form id="order-form">
+            <label for="order-product">Продукт:</label>
+            <input type="text" id="order-product" required />
+            <label for="order-quantity">Количество:</label>
+            <input type="number" id="order-quantity" required />
+            <label for="order-duedate">Срок выполнения:</label>
+            <input type="date" id="order-duedate" required />
+            <button type="submit">Добавить заказ</button>
+          </form>
+        </section>
       </section>
     </section>
   </main>
