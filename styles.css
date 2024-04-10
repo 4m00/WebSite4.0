@@ -3,6 +3,8 @@
 :root {
   --primary-color: #333;
   --secondary-color: #ff9800;
+  --accent-color: #4CAF50;
+  --light-color: #f9f9f9;
 }
 
 * {
@@ -13,18 +15,16 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 header {
   background-color: var(--primary-color);
   color: #fff;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
-}
-
-header.active {
-  display: block;
 }
 
 nav {
@@ -50,12 +50,12 @@ nav {
 
 .menu li {
   margin: 0 10px;
-} 
+}
 
 .menu a {
   color: #fff;
   text-decoration: none;
-  transition: color 0.3s;  
+  transition: color 0.3s;
 }
 
 .menu a:hover {
@@ -66,6 +66,14 @@ main {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #welcome-section {
@@ -79,16 +87,16 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  width: 300px;
-  margin: 20px auto;
+  width: 100%;
+  max-width: 400px; /* Добавлено: ограничение максимальной ширины форм */
+  margin: 0 auto;
 }
 
 input, button {
   padding: 12px;
   border-radius: 5px;
   border: none;
-} 
+}
 
 input {
   border: 1px solid #ccc;
@@ -103,7 +111,7 @@ input:focus {
 }
 
 input::placeholder {
-  color: #aaa;  
+  color: #aaa;
 }
 
 
@@ -112,15 +120,126 @@ input:invalid {
 }
 
 button {
-  margin-bottom: 20px;
-  background: var(--primary-color);
+  margin: 10px 0;
+  background: var(--secondary-color);
   color: #fff;
   cursor: pointer;
-  transition: background 0.3s;  
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  transition: background 0.3s;
 }
 
 button:hover {
+  background: var(--accent-color);
+}
+
+#login-form {
+  max-width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#login-form button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
   background: var(--secondary-color);
+  color: white;
+  cursor: pointer;
+}
+
+#login-form button:hover {
+  background: darken(var(--secondary-color), 10%);
+}
+
+#process-list li {
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-left: 5px solid var(--secondary-color);
+  list-style-type: none;
+}
+
+#process-list button {
+  margin-left: 10px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.delete-button {
+  background-color: #d9534f;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: darken(#f0ad4e, 10%);
+}
+
+.delete-button:hover {
+  background-color: darken(#d9534f, 10%);
+}
+
+select {
+  padding: 10px;
+}
+option {
+  background-color: #f9f9f9;
+  padding: 5px;
+}
+
+.modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed; /* Остается на месте при прокрутке */
+  z-index: 1; /* Сидит над всеми элементами */
+  left: 0;
+  top: 0;
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  overflow: auto; /* Включить прокрутку, если нужно */
+  background-color: rgb(0,0,0); /* Цвет фона */
+  background-color: rgba(0,0,0,0.4); /* Цвет фона с прозрачностью */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% сверху и по центру */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Можно изменить на больше или меньше */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 footer {
@@ -131,5 +250,5 @@ footer {
   background: var(--primary-color);
   color: #fff;
   padding: 10px;
-  text-align: center;   
+  text-align: center;
 }

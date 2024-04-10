@@ -43,15 +43,42 @@
       </section>
       <section id="add-process-section" style="display: none">
         <h2>Добавить процесс</h2>
-        <form id="process-form">
+        <form id="add-process-form">
             <label for="process-name">Название процесса:</label>
             <input type="text" id="process-name" required />
             <label for="process-startDate">Дата начала:</label>
             <input type="date" id="process-startDate" required />
             <label for="process-endDate">Дата окончания (необязательно):</label>
             <input type="date" id="process-endDate" />
+            <label for="process-participants">Участники (через запятую):</label>
+            <input type="text" id="process-participants" />
+            <label for="process-developmentStage">Этап разработки:</label>
+            <input type="text" id="process-developmentStage" />
             <button type="submit">Добавить процесс</button>
         </form>
+      </section>
+      <section id="edit-process-section" style="display: none">
+        <h2>Изменить процесс</h2>
+        <form id="edit-process-form">
+            <label for="process-name">Название процесса:</label>
+            <input type="text" id="process-name" required />
+            <label for="process-startDate">Дата начала:</label>
+            <input type="date" id="process-startDate" required />
+            <label for="process-endDate">Дата окончания (необязательно):</label>
+            <input type="date" id="process-endDate" />
+            <label for="process-participants">Участники (через запятую):</label>
+            <input type="text" id="process-participants" />
+            <label for="process-developmentStage">Этап разработки:</label>
+            <input type="text" id="process-developmentStage" />
+            <button type="submit">Изменить процесс</button>
+        </form>
+      </section>
+      <section id="processModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Детали процесса</h2>
+          <p id="processDetails"></p>
+        </div>
       </section>
       <section id="materials-section" style="display: none">
         <h2>Материалы</h2>
