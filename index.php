@@ -51,6 +51,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <ul id="current-process-list"></ul>
       </section>
       <section id="add-process-section" style="display: none">
+      <div class="form-container">
+      <div class="form-header">
         <h2>Добавить процесс</h2>
         <form action="add_process.php" method="post">
             <label for="process-name">Название процесса:</label>
@@ -72,6 +74,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </form>
       </section>
       <section id="edit-process-section" style="display: none">
+      <div class="form-container">
+      <div class="form-header">
         <h2>Изменить процесс</h2>
         <form action="edit_process.php" method="post" id="edit-process-form">
           <input type="hidden" name="edit-process-id" id="edit-process-id" value="">

@@ -138,6 +138,19 @@ button:hover {
   background: #0056b3;
 }
 
+a[href="?logout=true"] {
+  background-color: #d9534f; 
+  color: white; 
+  padding: 8px 12px; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  transition: background-color 0.3s ease; 
+}
+
+a[href="?logout=true"]:hover {
+  background-color: #c9302c; 
+}
+
 #login-form {
   max-width: 300px;
   margin: 50px auto;
