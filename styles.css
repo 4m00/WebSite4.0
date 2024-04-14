@@ -87,8 +87,9 @@ section {
 form {
   display: flex;
   flex-direction: column;
+  gap: 0px; 
   width: 100%;
-  max-width: 400px; /* Добавлено: ограничение максимальной ширины форм */
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -100,20 +101,18 @@ input, button {
 
 input {
   border: 1px solid #ccc;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
 }
 
 input:focus {
   outline: none;
-  border: 2px solid var(--secondary-color);
-  transition: border 0.3s ease-in-out;
   border-color: #050505;
-
+  box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.1); 
 }
 
 input::placeholder {
   color: #aaa;
 }
-
 
 input:invalid {
   border: 2px solid red;
@@ -124,14 +123,19 @@ button {
   background: var(--secondary-color);
   color: #fff;
   cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  padding: 12px 20px;
   transition: background 0.3s;
 }
 
 button:hover {
   background: var(--accent-color);
+}
+
+#edit-process-form button {
+  background: #007BFF;
+}
+
+#edit-process-form button:hover {
+  background: #0056b3;
 }
 
 #login-form {
@@ -169,7 +173,7 @@ button:hover {
 #process-list li {
   background: #f9f9f9;
   padding: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border-left: 5px solid var(--secondary-color);
   list-style-type: none;
 }
@@ -199,33 +203,67 @@ button:hover {
   background-color: darken(#d9534f, 10%);
 }
 
+#current-process-list li {
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--secondary-color);
+  list-style-type: none;
+}
+
+#current-process-list button {
+  margin-left: 10px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#current-process-list .edit-button {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+#current-process-list .delete-button {
+  background-color: #d9534f;
+  color: white;
+}
+
+#current-process-list .edit-button:hover {
+  background-color: darken(#f0ad4e, 10%);
+}
+
+#current-process-list .delete-button:hover {
+  background-color: darken(#d9534f, 10%);
+}
+
 select {
   padding: 10px;
 }
+
 option {
   background-color: #f9f9f9;
   padding: 5px;
 }
 
 .modal {
-  display: none; /* Скрыто по умолчанию */
-  position: fixed; /* Остается на месте при прокрутке */
-  z-index: 1; /* Сидит над всеми элементами */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Полная ширина */
-  height: 100%; /* Полная высота */
-  overflow: auto; /* Включить прокрутку, если нужно */
-  background-color: rgb(0,0,0); /* Цвет фона */
-  background-color: rgba(0,0,0,0.4); /* Цвет фона с прозрачностью */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% сверху и по центру */
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Можно изменить на больше или меньше */
+  width: 80%;
 }
 
 .close {

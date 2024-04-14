@@ -1,0 +1,60 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Перенаправление HTTP на HTTPS (для тестирования, если поддерживается)
+    # Раскомментируйте следующие строки, если ваш локальный сервер поддерживает HTTPS и вы хотите тестировать поведение приложения в защищенном соединении
+    #RewriteCond %{HTTPS} off
+    #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Запрет кэширования для всех файлов, чтобы изменения в коде сразу отображались без необходимости очистки кэша браузера
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+
+    # Защита от MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+<IfModule mod_mime.c>
+    # Управление MIME типами
+    AddType application/javascript .js
+    AddType text/css .css
+</IfModule>
+
+<IfModule dir_module>
+    # Установка файлов по умолчанию для начальной страницы
+    DirectoryIndex index.php index.html
+</IfModule>
+
+# Установка кодировки по умолчанию
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html
+
+<FilesMatch "\.(html|php|js|css|txt|jpg|jpeg|png|gif)$">
+    # Запрет кэширования для статических файлов
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</FilesMatch>
+
+<FilesMatch "\.(html|php)$">
+    # Защита от MIME type sniffing для HTML и PHP файлов
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
+
+# Защита системных файлов от прямого доступа
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<Files .htaccess>
+    # Запрет доступа к самому .htaccess
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Отключение отображения списка файлов в директориях
+Options -Indexes
