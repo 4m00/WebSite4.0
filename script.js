@@ -1,40 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('#nav-menu a');
-
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-
             const sections = document.querySelectorAll('#app-section > section');
             sections.forEach(section => section.style.display = 'none');
-
             const targetSection = document.querySelector(`#${this.dataset.link}-section`);
             targetSection.style.display = 'block';
-
             if (this.dataset.link === 'current-processes') {
                 loadCurrentProcesses();
             } else if (this.dataset.link === 'all-processes') {
                 loadAllProcesses();
+            } else if (this.dataset.link === 'process-visualization') {
+                loadProcessVisualization(); // Load process visualization
             }
         });
     });
-
-    const logoutLink = document.querySelector('a[href="?logout=true"]');
-    if (logoutLink) {
-        logoutLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Предотвратить переход по ссылке
-            if (confirm('Вы уверены, что хотите выйти?')) {
-                window.location.href = this.href; // Перенаправить на выход
-            }
-        });
-    }
 
     const processForm = document.getElementById('process-form');
     if (processForm) {
         processForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-
             fetch('add_process.php', {
                 method: 'POST',
                 body: formData
@@ -63,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadProcesses(url, targetId) {
         const processListElement = document.getElementById(targetId);
         processListElement.innerHTML = '';
-
         fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -76,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         editProcessForm(processId);
                     });
                 });
-
                 const deleteButtons = document.querySelectorAll('.delete-button');
                 deleteButtons.forEach(button => {
                     button.addEventListener('click', function() {
@@ -102,11 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.success) {
                 // Перенаправляем пользователя на index.php после успешного обновления процесса
                 window.location.href = 'index.php';
+                alert('Процесс успешно изменен.');
             } else {
                 alert('Ошибка при обновлении процесса');
             }
         })
-        .catch(error => console.error('Ошибка:', error));
+        .catch(error => console.error('Ошибка:', error))
+        .finally(() => {
+            // Закрываем форму редактирования после успешного изменения процесса
+            document.getElementById('edit-process-section').style.display = 'none';
+        });
     }
 
     function deleteProcess(processId) {
@@ -148,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('edit-process-endDate').value = data.end_date || '';
                 document.getElementById('edit-process-participants').value = data.participants || '';
                 document.getElementById('edit-process-developmentStage').value = data.development_stage || '';
-
                 // Показываем форму редактирования
                 const sections = document.querySelectorAll('#app-section > section');
                 sections.forEach(section => section.style.display = 'none');
@@ -172,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         addProcessForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-
             fetch('add_process.php', {
                 method: 'POST',
                 body: formData
@@ -189,4 +177,72 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Ошибка:', error));
         });
     }
+
+    // Function to load process visualization
+    function loadProcessVisualization() {
+        fetch('get_visualisation_processes.php')
+            .then(response => response.text())
+            .then(data => {
+                const processVisualizationContainer = document.getElementById('process-visualization-container');
+                processVisualizationContainer.innerHTML = data;
+                addCardClickHandlers();
+            })
+            .catch(error => console.error('An error occurred while loading process visualization:', error));
+    }
+
+    function addCardClickHandlers() {
+        const processCards = document.querySelectorAll('.process-card');
+        processCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const processId = card.dataset.processId;
+                openProcessDetails(processId);
+            });
+        });
+    }
+
+    function openProcessDetails(processId) {
+        fetch(`get_process_details.php?id=${processId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const visualizationContainer = document.getElementById('process-visualization-container');
+                    visualizationContainer.innerHTML = '';
+
+                    const processDetails = `
+                        <div class="process-details-modal">
+                            <div class="process-details-content">
+                                <span class="close-details">&times;</span>
+                                <h3 class="process-name">${data.name}</h3>
+                                <p class="process-date"><strong>Дата начала:</strong> ${data.start_date}</p>
+                                <p class="process-date"><strong>Дата окончания:</strong> ${data.end_date || 'Не указана'}</p>
+                                <p class="process-participants"><strong>Участники:</strong> ${data.participants}</p>
+                                <p class="process-stage"><strong>Этап разработки:</strong> ${data.development_stage}</p>
+                            </div>
+                        </div>
+                    `;
+                    visualizationContainer.innerHTML = processDetails;
+
+                    document.querySelector('.close-details').addEventListener('click', () => {
+                        visualizationContainer.innerHTML = '';
+                        loadProcessVisualization();
+                    });
+                } else {
+                    console.error('Error fetching process details:', data.error);
+                    alert('Не удалось загрузить данные о процессе.');
+                }
+            })
+            .catch(error => console.error('Error loading process data:', error));
+    }
+
+    function toggleModal() {
+        const modal = document.getElementById('process-details-modal');
+        modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(e) {
+        const modal = document.getElementById('process-details-modal');
+        if (e.target === modal) {
+            toggleModal();
+        }
+    });
 });

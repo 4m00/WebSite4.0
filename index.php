@@ -101,10 +101,51 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <h2>Все процессы</h2>
         <ul id="process-list"></ul>
       </section>
-      <section id="process-visualization-section" style="display: none">
-        <h2>Визуализация процессов</h2>
-        <div id="process-visualization"></div>
-      </section>
+        <section id="process-visualization-section" style="display: none">
+            <h2>Визуализация процессов</h2>
+            <div id="process-visualization-container">
+                <div class="process-stage-container">
+                    <div class="process-stage-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>Планирование</h3>
+                    </div>
+                    <div class="process-stage-content">
+                        <div class="process-card-container" id="planning-stage">
+                        </div>
+                    </div>
+                </div>
+                <div class="process-stage-container">
+                    <div class="process-stage-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Разработка</h3>
+                    </div>
+                    <div class="process-stage-content">
+                        <div class="process-card-container" id="development-stage">
+                        </div>
+                    </div>
+                </div>
+                <div class="process-stage-container">
+                    <div class="process-stage-header">
+                        <i class="fas fa-bug"></i>
+                        <h3>Тестирование</h3>
+                    </div>
+                    <div class="process-stage-content">
+                        <div class="process-card-container" id="testing-stage">
+                        </div>
+                    </div>
+                </div>
+                <div class="process-stage-container">
+                    <div class="process-stage-header">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Внедрение</h3>
+                    </div>
+                    <div class="process-stage-content">
+                        <div class="process-card-container" id="deployment-stage">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
   </main>
   <footer>

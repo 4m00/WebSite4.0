@@ -87,7 +87,7 @@ section {
 form {
   display: flex;
   flex-direction: column;
-  gap: 0px; 
+  gap: 10px;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -101,13 +101,13 @@ input, button {
 
 input {
   border: 1px solid #ccc;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 input:focus {
   outline: none;
   border-color: #050505;
-  box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.1); 
+  box-shadow: 0 0 0 3px rgba(5, 5, 5, 0.1);
 }
 
 input::placeholder {
@@ -139,16 +139,16 @@ button:hover {
 }
 
 a[href="?logout=true"] {
-  background-color: #d9534f; 
-  color: white; 
-  padding: 8px 12px; 
-  border-radius: 5px; 
-  text-decoration: none; 
-  transition: background-color 0.3s ease; 
+  background-color: #d9534f;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 a[href="?logout=true"]:hover {
-  background-color: #c9302c; 
+  background-color: #c9302c;
 }
 
 #login-form {
@@ -249,6 +249,97 @@ a[href="?logout=true"]:hover {
   background-color: darken(#d9534f, 10%);
 }
 
+
+/* Предлагаемое оформление */
+.process-stage-container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.process-stage-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.process-stage-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.process-stage-header i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #666;
+}
+
+.process-stage-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.process-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.process-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.process-card h4 {
+  margin-top: 0;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+}
+
+.process-card p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Цвета для разных стадий процесса */
+.stage-Планирование .process-stage-header {
+  background-color: #f0e68c;
+}
+.stage-Разработка .process-stage-header {
+  background-color: #add8e6;
+}
+.stage-Тестирование .process-stage-header {
+  background-color: #98fb98;
+}
+.stage-Внедрение .process-stage-header {
+  background-color: #ffa07a;
+}
+
+.stage-Планирование .process-card {
+  background-color: #f0e68c;
+}
+.stage-Разработка .process-card {
+  background-color: #add8e6;
+}
+.stage-Тестирование .process-card {
+  background-color: #98fb98;
+}
+.stage-Внедрение .process-card {
+  background-color: #ffa07a;
+}
+
 select {
   padding: 10px;
 }
@@ -291,6 +382,69 @@ option {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.process-details-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  padding-top: 40px;
+}
+
+.process-details-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.process-date,
+.process-participants,
+.process-stage {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.process-date strong,
+.process-participants strong,
+.process-stage strong {
+  font-weight: 500;
+}
+
+.close-details {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-details:hover,
+.close-details:focus {
+  color: #333;
+  text-decoration: none;
+}
+
+#add-process-form button,
+#edit-process-form button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+#add-process-form button:hover,
+#edit-process-form button:hover {
+  background-color: var(--accent-color);
 }
 
 footer {
