@@ -202,35 +202,61 @@ a[href="?logout=true"]:hover {
 }
 
 #login-form {
-  max-width: 300px;
+  max-width: 400px;
   margin: 50px auto;
-  padding: 20px;
-  background: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#login-form h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
 }
 
 #login-form input[type="text"],
 #login-form input[type="password"] {
-  width: calc(100% - 20px);
-  margin-bottom: 10px;
-  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px 16px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 #login-form button {
-  width: calc(100% - 20px);
-  padding: 10px;
+  width: 100%;
+  padding: 14px;
   border: none;
   border-radius: 4px;
   background: var(--secondary-color);
   color: white;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #login-form button:hover {
-  background: darken(var(--secondary-color), 10%);
+  background: var(--accent-color);
+}
+
+#login-form p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+
+#login-form a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+#login-form a:hover {
+  text-decoration: underline;
 }
 
 #process-list li,
