@@ -71,7 +71,7 @@ main {
 section {
   margin-bottom: 30px;
   background-color: #fff;
-  padding: 20px;
+  padding: 20px; 
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -178,15 +178,16 @@ a[href="?logout=true"]:hover {
 
 .form-container {
   background-color: #fff;
-  padding: 30px;
+  padding: 15px;
+  margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-container:hover {
-  transform: none; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-5px); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-header {
@@ -232,74 +233,88 @@ a[href="?logout=true"]:hover {
   background: darken(var(--secondary-color), 10%);
 }
 
-#process-list li {
-  background: #f9f9f9;
-  padding: 10px;
+#process-list li,
+#current-process-list li {
+  background: #fff;
+  padding: 25px;
   margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
   border-left: 5px solid var(--secondary-color);
-  list-style-type: none;
+  position: relative;
 }
 
-#process-list button {
-  margin-left: 10px;
+#process-list li:hover,
+#current-process-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#process-list li .process-info,
+#current-process-list li .process-info {
+  flex-grow: 1;
+  width: 100%; /* Растянули блок на всю ширину */
+  margin-right: 20px;
+}
+
+#process-list li h3,
+#current-process-list li h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#process-list li p,
+#current-process-list li p {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+#process-list li .process-buttons,
+#current-process-list li .process-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#process-list button,
+#current-process-list button {
+  margin-bottom: 5px;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .edit-button {
-  background-color: #f0ad4e;
-  color: white;
+  background-color: var(--secondary-color);
+  color: #fff;
 }
 
 .delete-button {
   background-color: #d9534f;
-  color: white;
+  color: #fff;
 }
 
-.edit-button:hover {
-  background-color: darken(#f0ad4e, 10%);
-}
-
+.edit-button:hover,
 .delete-button:hover {
-  background-color: darken(#d9534f, 10%);
+  opacity: 0.8;
 }
 
-#current-process-list li {
-  background: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-left: 5px solid var(--secondary-color);
-  list-style-type: none;
-}
-
-#current-process-list button {
-  margin-left: 10px;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-#current-process-list .edit-button {
-  background-color: #f0ad4e;
-  color: white;
-}
-
-#current-process-list .delete-button {
-  background-color: #d9534f;
-  color: white;
-}
-
-#current-process-list .edit-button:hover {
-  background-color: darken(#f0ad4e, 10%);
-}
-
-#current-process-list .delete-button:hover {
-  background-color: darken(#d9534f, 10%);
-}
-
-
-/* Предлагаемое оформление */
 .process-stage-container {
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -340,6 +355,8 @@ a[href="?logout=true"]:hover {
   padding: 15px;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .process-card:hover {
@@ -360,9 +377,11 @@ a[href="?logout=true"]:hover {
   margin: 5px 0;
   font-size: 14px;
   color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Цвета для разных стадий процесса */
 .stage-Планирование .process-stage-header {
   background-color: #f0e68c;
 }

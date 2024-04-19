@@ -245,4 +245,15 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleModal();
         }
     });
+
+    // Обработка нажатия на ссылку выхода
+    document.querySelector('a[href="?logout=true"]').addEventListener('click', function(e) {
+        e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+        fetch('?logout=true') // Отправляем запрос на выход
+            .then(response => {
+                // После успешного выхода перенаправляем пользователя на login.php
+                window.location.href = 'login.php';
+            })
+            .catch(error => console.error('Ошибка при выходе:', error));
+    });
 });
