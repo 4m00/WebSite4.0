@@ -180,14 +180,14 @@ a[href="?logout=true"]:hover {
   background-color: #fff;
   padding: 15px;
   margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none; 
+  box-shadow: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-container:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: none; 
+  box-shadow: none;
 }
 
 .form-header {
@@ -267,7 +267,7 @@ a[href="?logout=true"]:hover {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
